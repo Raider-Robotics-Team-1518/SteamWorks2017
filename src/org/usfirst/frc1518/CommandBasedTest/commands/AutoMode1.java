@@ -1,6 +1,5 @@
 package org.usfirst.frc1518.CommandBasedTest.commands;
 
-
 import org.usfirst.frc1518.CommandBasedTest.OI;
 import org.usfirst.frc1518.CommandBasedTest.Robot;
 import org.usfirst.frc1518.CommandBasedTest.subsystems.DriveTrain;
@@ -16,15 +15,15 @@ public class AutoMode1 extends Command {
 	boolean taskComplete = false;
 
 	public AutoMode1() {
-	    requires(Robot.driveTrain);
+		requires(Robot.driveTrain);
 		// addSequential(new Forward( ));
-	 
+
 	}
 
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -37,25 +36,19 @@ public class AutoMode1 extends Command {
 		SmartDashboard.putBoolean("Forward", false);
 		Robot.isReversed = false;
 		int timeout = 0;
-		
+
 		while (timeout < 300000) {
 			Robot.driveTrain.drive(-0.7, -0.7);
 			timeout = timeout + 1;
 		}
 		Robot.driveTrain.drive(0, 0);
-		/*timeout = 0;
-		while (timeout < 250000) {
-			Robot.driveTrain.drive(-.5, .5);
-			timeout = timeout + 1;
-		}
-		Robot.driveTrain.drive(0, 0);
-		timeout = 0;
-		while (timeout <250000) {
-			Robot.driveTrain.drive(-.5, -.5);
-			timeout = timeout + 1;
-		}
-		Robot.driveTrain.drive(0, 0);*/
-		
+		/*
+		 * timeout = 0; while (timeout < 250000) { Robot.driveTrain.drive(-.5,
+		 * .5); timeout = timeout + 1; } Robot.driveTrain.drive(0, 0); timeout =
+		 * 0; while (timeout <250000) { Robot.driveTrain.drive(-.5, -.5);
+		 * timeout = timeout + 1; } Robot.driveTrain.drive(0, 0);
+		 */
+
 		taskComplete = true;
 	}
 
@@ -75,6 +68,6 @@ public class AutoMode1 extends Command {
 	@Override
 	protected void interrupted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

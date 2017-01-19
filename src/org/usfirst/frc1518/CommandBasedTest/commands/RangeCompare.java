@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class RangeCompare extends Command {
 	public RangeCompare() {
-	    requires(Robot.driveTrain);
+		requires(Robot.driveTrain);
 
 	}
 
 	@Override
 	protected void initialize() {
-		//Auto-generated method stub
-		
+		// Auto-generated method stub
+
 	}
 
 	@Override
@@ -23,54 +23,55 @@ public class RangeCompare extends Command {
 		Robot.leftButtCheek = RobotMap.analogSensorLeftSonic.GetRangeInInches();
 		Robot.rightButtCheek = RobotMap.analogSensorRightSonic.GetRangeInInches();
 		Robot.buttChasm = Robot.rightButtCheek - Robot.leftButtCheek;
-		Robot.buttAverage = (Robot.leftButtCheek + Robot.rightButtCheek) / 2; // send to Driver Station
-		
-			if (Robot.buttChasm > 0) {
-				Robot.driveTrain.drive(0.7, -0.7);
-//				DriveTrain.frontLeftDrive.set(-0.5);
-//				DriveTrain.rearLeftDrive.set(-0.5);
-//				DriveTrain.frontRightDrive.set(0.5);
-//				DriveTrain.rearRightDrive.set(0.5);
-			}
-			else if(Robot.buttChasm < 0) {
-				Robot.driveTrain.drive(-0.7, 0.7);
-//				DriveTrain.frontLeftDrive.set(0.5);
-//				DriveTrain.rearLeftDrive.set(0.5);
-//				DriveTrain.frontRightDrive.set(-0.5);
-//				DriveTrain.rearRightDrive.set(-0.5);
-			}
-			else {
-				Robot.driveTrain.drive(0, 0);
-//				DriveTrain.frontLeftDrive.set(0);
-//				DriveTrain.rearLeftDrive.set(0);
-//				DriveTrain.frontRightDrive.set(0);
-//				DriveTrain.rearRightDrive.set(0);
-			}
-		//Auto-generated method stub
-		
+		Robot.buttAverage = (Robot.leftButtCheek + Robot.rightButtCheek) / 2; // send
+																				// to
+																				// Driver
+																				// Station
+
+		if (Robot.buttChasm > 0) {
+			Robot.driveTrain.drive(0.7, -0.7);
+			// DriveTrain.frontLeftDrive.set(-0.5);
+			// DriveTrain.rearLeftDrive.set(-0.5);
+			// DriveTrain.frontRightDrive.set(0.5);
+			// DriveTrain.rearRightDrive.set(0.5);
+		} else if (Robot.buttChasm < 0) {
+			Robot.driveTrain.drive(-0.7, 0.7);
+			// DriveTrain.frontLeftDrive.set(0.5);
+			// DriveTrain.rearLeftDrive.set(0.5);
+			// DriveTrain.frontRightDrive.set(-0.5);
+			// DriveTrain.rearRightDrive.set(-0.5);
+		} else {
+			Robot.driveTrain.drive(0, 0);
+			// DriveTrain.frontLeftDrive.set(0);
+			// DriveTrain.rearLeftDrive.set(0);
+			// DriveTrain.frontRightDrive.set(0);
+			// DriveTrain.rearRightDrive.set(0);
+		}
+		// Auto-generated method stub
+
 	}
 
 	@Override
 	protected boolean isFinished() {
-		//Auto-generated method stub
+		// Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	protected void end() {
-		//Auto-generated method stub
-		
+		// Auto-generated method stub
+
 	}
 
 	@Override
 	protected void interrupted() {
 		Robot.driveTrain.drive(0, 0);
-//		DriveTrain.frontLeftDrive.set(0);         
-//		DriveTrain.rearLeftDrive.set(0);
-//		DriveTrain.frontRightDrive.set(0);
-//		DriveTrain.rearRightDrive.set(0);
-		//Auto-generated method stub
-		
-	} 
+		// DriveTrain.frontLeftDrive.set(0);
+		// DriveTrain.rearLeftDrive.set(0);
+		// DriveTrain.frontRightDrive.set(0);
+		// DriveTrain.rearRightDrive.set(0);
+		// Auto-generated method stub
+
+	}
 
 }

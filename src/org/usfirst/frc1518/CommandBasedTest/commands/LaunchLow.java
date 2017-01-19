@@ -42,7 +42,6 @@ public class LaunchLow extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Launcher.topWheels.set(1);
     	Launcher.bottomWheels.set(0.65);
     }
 
@@ -53,14 +52,12 @@ public class LaunchLow extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Launcher.topWheels.set(0);
     	Launcher.bottomWheels.set(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Launcher.topWheels.set(0);
     	Launcher.bottomWheels.set(0);
     }
 }

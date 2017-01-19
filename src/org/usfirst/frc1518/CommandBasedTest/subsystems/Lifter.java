@@ -1,4 +1,5 @@
 package org.usfirst.frc1518.CommandBasedTest.subsystems;
+
 import org.usfirst.frc1518.CommandBasedTest.RobotMap;
 import org.usfirst.frc1518.CommandBasedTest.commands.Lift;
 
@@ -14,7 +15,7 @@ public class Lifter extends Subsystem {
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
 		setDefaultCommand(new Lift());
-		
+
 	}
 
 }

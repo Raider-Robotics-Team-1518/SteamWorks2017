@@ -4,13 +4,13 @@ import org.usfirst.frc1518.CommandBasedTest.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutoMode3 extends Command{
+public class AutoMode3 extends Command {
 	boolean taskComplete;
 
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -23,19 +23,19 @@ public class AutoMode3 extends Command{
 		Robot.driveTrain.drive(0, 0);
 		taskComplete = true;
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void interrupted() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
