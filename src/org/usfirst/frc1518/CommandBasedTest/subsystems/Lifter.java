@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Lifter extends Subsystem {
-	public static TalonSRX armMotor = RobotMap.liftMotor1;
+	public static VictorSP armMotor = RobotMap.liftMotor1;
 	public static VictorSP winchMotor = RobotMap.liftMotor2;
 
 	@Override

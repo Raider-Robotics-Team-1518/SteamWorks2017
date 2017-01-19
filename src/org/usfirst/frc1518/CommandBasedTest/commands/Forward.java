@@ -12,7 +12,7 @@ public class Forward extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		DriveTrain.rearLeftDrive.set(5000);
+		//DriveTrain.rearLeftDrive.set(5000);
 		isCompleted = true;
 
 	}

@@ -32,16 +32,16 @@ public class AutoMode1 extends Command {
 		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
 		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
-		DriveTrain.drive.tankDrive(OI.leftJoystick.getY(), OI.rightJoystick.getY());
+		DriveTrain.drive.tankDrive(Robot.oi.leftJoystick.getY(), Robot.oi.rightJoystick.getY());
 		SmartDashboard.putBoolean("Forward", false);
-		Robot.isReversed = false;
+		//Robot.isReversed = false;
 		int timeout = 0;
 
 		while (timeout < 300000) {
-			Robot.driveTrain.drive(-0.7, -0.7);
+			//Robot.driveTrain.drive(-0.7, -0.7);
 			timeout = timeout + 1;
 		}
-		Robot.driveTrain.drive(0, 0);
+		//Robot.driveTrain.drive(0, 0);
 		/*
 		 * timeout = 0; while (timeout < 250000) { Robot.driveTrain.drive(-.5,
 		 * .5); timeout = timeout + 1; } Robot.driveTrain.drive(0, 0); timeout =
@@ -61,7 +61,7 @@ public class AutoMode1 extends Command {
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
-		Robot.driveTrain.drive(0, 0);
+		//Robot.driveTrain.drive(0, 0);
 
 	}
 

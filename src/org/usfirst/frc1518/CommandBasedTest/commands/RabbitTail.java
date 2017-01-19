@@ -5,7 +5,6 @@ import javax.print.DocFlavor.STRING;
 import org.usfirst.frc1518.CommandBasedTest.RobotMap;
 import org.usfirst.frc1518.CommandBasedTest.subsystems.Launcher;
 
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class RabbitTail extends Command {
