@@ -1,17 +1,16 @@
-package org.usfirst.frc0.CANRobot.subsystems;
+package org.usfirst.frc1518.CANRobot.subsystems;
 
-import org.usfirst.frc0.CANRobot.RobotMap;
+import org.usfirst.frc1518.CANRobot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANSpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Launcher extends Subsystem {
+public class Feeder extends Subsystem{
 
-    public static final CANSpeedController shooter = RobotMap.shooterMotor;
-
-    public Launcher() {
+	public static final CANSpeedController feeder = RobotMap.feedMotor;
+			
+	public Feeder() {
 		// TODO Auto-generated constructor stub
-
 	}
 
 	@Override

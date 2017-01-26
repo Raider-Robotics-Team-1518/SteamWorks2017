@@ -1,6 +1,6 @@
-package org.usfirst.frc0.CANRobot.subsystems;
+package org.usfirst.frc1518.CANRobot.subsystems;
 
-import org.usfirst.frc0.CANRobot.RobotMap;
+import org.usfirst.frc1518.CANRobot.RobotMap;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;

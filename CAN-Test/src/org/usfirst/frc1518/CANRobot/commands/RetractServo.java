@@ -1,6 +1,6 @@
-package org.usfirst.frc0.CANRobot.commands;
+package org.usfirst.frc1518.CANRobot.commands;
 
-import org.usfirst.frc0.CANRobot.subsystems.Servos;
+import org.usfirst.frc1518.CANRobot.subsystems.Servos;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 

@@ -9,9 +9,9 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc0.CANRobot.commands;
+package org.usfirst.frc1518.CANRobot.commands;
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc0.CANRobot.Robot;
+import org.usfirst.frc1518.CANRobot.Robot;
 
 /**
  *
