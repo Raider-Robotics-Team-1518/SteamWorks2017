@@ -38,7 +38,12 @@ public class DriveTrain extends Subsystem {
 	
 	public DriveTrain(){
 		super();
+		if(Robot.isTestBot == false){
 		drive = new RobotDrive(RobotMap.driveTrainFrontLeftWheel, RobotMap.driveTrainRearLeftWheel, RobotMap.driveTrainFrontRightWheel, RobotMap.driveTrainRearRightWheel);
+		}
+		else if(Robot.isTestBot == true){
+			drive = new RobotDrive(RobotMap.pwmDriveFL, RobotMap.pwmDriveRL, RobotMap.pwmDriveFR, RobotMap.pwmDriveRR);
+		}
 	}
 	
 	public void drive(GenericHID mainstick){
@@ -65,6 +70,8 @@ public class DriveTrain extends Subsystem {
     }
     public void takeJoystickInputs(Double yAxis, Double zAxis) {
     	yAxis = (yAxis);
+    	// multiplying the zAxis by itself causes a slower power curve on the steering
+    	// adding 50% of the xAxis to enable better steering while moving forward
     	zAxis = (zAxis * Math.abs(zAxis));
     	drive.arcadeDrive(yAxis, zAxis);
     }
