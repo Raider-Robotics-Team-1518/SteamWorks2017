@@ -7,7 +7,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Pneumatics extends Subsystem{
 	public static final Solenoid one = RobotMap.testSolenoid;
-
+	public static final Solenoid two = RobotMap.testSolenoid1;
+	
 	public Pneumatics() {
 		// TODO Auto-generated constructor stub
 	}

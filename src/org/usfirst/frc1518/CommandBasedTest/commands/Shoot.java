@@ -1,5 +1,7 @@
 package org.usfirst.frc1518.CommandBasedTest.commands;
 
+import org.usfirst.frc1518.CommandBasedTest.OI;
+import org.usfirst.frc1518.CommandBasedTest.subsystems.Feeder;
 import org.usfirst.frc1518.CommandBasedTest.subsystems.Launcher;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -26,18 +28,21 @@ public class Shoot extends Command {
 	}
 
 	protected void execute(){
-		Launcher.shooter.set(-.8);
+		Launcher.shooter.set(OI.mainstick.getThrottle());
+		Feeder.feeder.set(-1);
 	}
 
     // Called once after isFinished returns true
     protected void end() {
     	Launcher.shooter.set(0);
+    	Feeder.feeder.set(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	Launcher.shooter.set(0);
+    	Feeder.feeder.set(0);
     }
 
 	@Override

@@ -27,12 +27,17 @@ public class Drive extends Command {
 	}
 
 	protected void execute(){
-		Robot.driveTrain.drive(Robot.oi.mainstick);
+		Robot.driveTrain.takeJoystickInputs(Robot.oi.mainstick.getY(), Robot.oi.mainstick.getZ());
 	}
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	protected void end() {
+		Robot.driveTrain.stop();
+	}
+	protected void interrupted(){
+		end();
+	}
 }

@@ -17,6 +17,7 @@ import org.usfirst.frc1518.CommandBasedTest.RobotMap;
 import org.usfirst.frc1518.CommandBasedTest.commands.*;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -41,7 +42,12 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void drive(GenericHID mainstick){
-		drive.arcadeDrive(Robot.oi.mainstick.getY(),Robot.oi.mainstick.getZ());
+		double zAxis = Robot.oi.mainstick.getZ();
+		double yAxis = Robot.oi.mainstick.getY();
+    	//yAxis = (yAxis * yAxis);
+    	//zAxis = (zAxis * zAxis);
+
+		drive.arcadeDrive(yAxis,zAxis);
 	}
 
     // Put methods for controlling this subsystem
@@ -56,6 +62,14 @@ public class DriveTrain extends Subsystem {
 
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
+    }
+    public void takeJoystickInputs(Double yAxis, Double zAxis) {
+    	yAxis = (yAxis);
+    	zAxis = (zAxis * Math.abs(zAxis));
+    	drive.arcadeDrive(yAxis, zAxis);
+    }
+    public void stop() {
+    	drive.arcadeDrive(0,0);
     }
 }
 

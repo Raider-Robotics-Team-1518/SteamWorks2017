@@ -14,7 +14,7 @@ public class Feed extends Command{
 		// TODO Auto-generated constructor stub
 	}
 	protected void execute(){
-		Feeder.feeder.set(OI.mainstick.getThrottle());
+		Feeder.feeder.set(1);
 		}
 		
 	
