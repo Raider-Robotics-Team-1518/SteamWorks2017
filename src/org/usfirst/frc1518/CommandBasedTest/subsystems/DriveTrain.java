@@ -47,12 +47,13 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void drive(GenericHID mainstick){
-		double zAxis = Robot.oi.mainstick.getZ();
+		/*double zAxis = Robot.oi.mainstick.getZ();
 		double yAxis = Robot.oi.mainstick.getY();
+		double xAxis = Robot.oi.mainstick.getX() * 0.5;
     	//yAxis = (yAxis * yAxis);
-    	//zAxis = (zAxis * zAxis);
+    	zAxis = (zAxis * Math.abs(zAxis)) + xAxis;
 
-		drive.arcadeDrive(yAxis,zAxis);
+		drive.arcadeDrive(yAxis,zAxis);*/
 	}
 
     // Put methods for controlling this subsystem
@@ -69,11 +70,13 @@ public class DriveTrain extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     public void takeJoystickInputs(Double yAxis, Double zAxis) {
-    	yAxis = (yAxis);
+		double xAxis = Robot.oi.mainstick.getX() * 0.75;
+		yAxis = (yAxis);
     	// multiplying the zAxis by itself causes a slower power curve on the steering
     	// adding 50% of the xAxis to enable better steering while moving forward
-    	zAxis = (zAxis * Math.abs(zAxis));
-    	drive.arcadeDrive(yAxis, zAxis);
+    	zAxis = (zAxis * Math.abs(zAxis) * 0.75);
+    	
+    	drive.arcadeDrive(yAxis, zAxis + xAxis);
     }
     public void stop() {
     	drive.arcadeDrive(0,0);

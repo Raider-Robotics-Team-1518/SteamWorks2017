@@ -1,6 +1,7 @@
 package org.usfirst.frc1518.CommandBasedTest.commands;
 
 import org.usfirst.frc1518.CommandBasedTest.Robot;
+import org.usfirst.frc1518.CommandBasedTest.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -31,7 +32,7 @@ public class Drive extends Command {
 		// multiply the x axis by 0.5 to give more control
 		// multiply the z axis by itself to slow power curve
 		
-		double liveZ = Robot.oi.mainstick.getZ() * Math.abs(Robot.oi.mainstick.getZ());
+		double liveZ = Robot.oi.mainstick.getZ() * Math.abs(Robot.oi.mainstick.getZ() * 0.75);
 		double liveX = Robot.oi.mainstick.getX() * 0.5;
 		double steering = liveZ + liveX;
 		if (Robot.isReversed == true) {

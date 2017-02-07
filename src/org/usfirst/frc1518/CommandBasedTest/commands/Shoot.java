@@ -28,7 +28,7 @@ public class Shoot extends Command {
 	}
 
 	protected void execute(){
-		Launcher.shooter.set(OI.mainstick.getThrottle());
+		Launcher.shooter.set(0.8);
 		Feeder.feeder.set(-1);
 	}
 
