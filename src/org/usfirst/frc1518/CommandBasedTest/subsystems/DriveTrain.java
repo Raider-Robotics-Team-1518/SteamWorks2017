@@ -70,13 +70,15 @@ public class DriveTrain extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     public void takeJoystickInputs(Double yAxis, Double zAxis) {
-		double xAxis = Robot.oi.mainstick.getX() * 0.75;
-		yAxis = (yAxis);
+		//double xAxis = (zAxis + Robot.oi.mainstick.getX()) * 0.75;
+		//yAxis = (yAxis * Math.abs(yAxis));
     	// multiplying the zAxis by itself causes a slower power curve on the steering
     	// adding 50% of the xAxis to enable better steering while moving forward
-    	zAxis = (zAxis * Math.abs(zAxis) * 0.75);
+    	//zAxis = (zAxis * Math.abs(zAxis) * 0.75);
+    	//xAxis = (xAxis * Math.abs(xAxis) * 0.75);
     	
-    	drive.arcadeDrive(yAxis, zAxis + xAxis);
+    	drive.arcadeDrive(yAxis, zAxis);
+    	
     }
     public void stop() {
     	drive.arcadeDrive(0,0);

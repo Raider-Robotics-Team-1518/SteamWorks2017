@@ -48,7 +48,8 @@ public class Robot extends IterativeRobot {
     public static Feeder feeder;
 	public static double feedSpeed;
 	public static boolean isReversed = true;
-	public static boolean isTestBot = false;
+	public static boolean isTestBot = true;
+	public static boolean intakeOn = false;
 	public static String alliance = "";
 	public static UsbCamera cam0;
 	public static UsbCamera cam1;
@@ -93,6 +94,8 @@ public class Robot extends IterativeRobot {
 		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
 		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
     	isReversed = true;
+    	RobotMap.pwmIntake.set(0);
+    	intakeOn = false;
     }
 
     public void disabledPeriodic() {

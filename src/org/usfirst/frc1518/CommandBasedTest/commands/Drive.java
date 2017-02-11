@@ -32,8 +32,10 @@ public class Drive extends Command {
 		// multiply the x axis by 0.5 to give more control
 		// multiply the z axis by itself to slow power curve
 		
-		double liveZ = Robot.oi.mainstick.getZ() * Math.abs(Robot.oi.mainstick.getZ() * 0.75);
-		double liveX = Robot.oi.mainstick.getX() * 0.5;
+		double liveZ = Robot.oi.mainstick.getZ();
+		double liveX = Robot.oi.mainstick.getX();
+		liveZ = (liveZ * Math.abs(liveZ)) * 0.8;
+		//liveX = liveX * .075;
 		double steering = liveZ + liveX;
 		if (Robot.isReversed == true) {
 		Robot.driveTrain.takeJoystickInputs(Robot.oi.mainstick.getY(), steering);

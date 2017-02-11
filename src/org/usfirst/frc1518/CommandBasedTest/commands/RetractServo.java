@@ -10,14 +10,17 @@ public class RetractServo extends InstantCommand{
 		// TODO Auto-generated constructor stub
 	}
 	protected void execute(){
-		if(Servos.servo1.getAngle() == 0){
-			Servos.servo1.setAngle(45);
+		if(Servos.servo1.get() == Servos.highPosition){
+			Servos.servo1.set(Servos.midPosition);
+			Servos.servo2.set(Servos.midPosition);
 		}
-		else if(Servos.servo1.getAngle() == 45){
-			Servos.servo1.setAngle(90);
+		else if(Servos.servo1.get() == Servos.midPosition){
+			Servos.servo1.set(Servos.lowPosition);
+			Servos.servo2.set(Servos.midPosition);
 		}
-		else if(Servos.servo1.getAngle() == 90){
-			Servos.servo1.setAngle(180);
+		else if(Servos.servo1.get() == Servos.lowPosition){
+			Servos.servo1.set(Servos.highPosition);
+			Servos.servo2.set(Servos.highPosition);
 		}
 		else{
 			Servos.servo1.setAngle(0);
@@ -36,4 +39,5 @@ public class RetractServo extends InstantCommand{
 		
 	}
 }
+
 	

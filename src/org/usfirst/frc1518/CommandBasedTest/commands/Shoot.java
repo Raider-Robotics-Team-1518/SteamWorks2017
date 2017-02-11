@@ -1,6 +1,7 @@
 package org.usfirst.frc1518.CommandBasedTest.commands;
 
 import org.usfirst.frc1518.CommandBasedTest.OI;
+import org.usfirst.frc1518.CommandBasedTest.RobotMap;
 import org.usfirst.frc1518.CommandBasedTest.subsystems.Feeder;
 import org.usfirst.frc1518.CommandBasedTest.subsystems.Launcher;
 
@@ -30,12 +31,15 @@ public class Shoot extends Command {
 	protected void execute(){
 		Launcher.shooter.set(0.8);
 		Feeder.feeder.set(-1);
+		RobotMap.feedMotor1.set(1);
+		
 	}
 
     // Called once after isFinished returns true
     protected void end() {
     	Launcher.shooter.set(0);
     	Feeder.feeder.set(0);
+    	RobotMap.feedMotor1.set(0);
     }
 
     // Called when another command which requires one or more of the same
@@ -43,6 +47,7 @@ public class Shoot extends Command {
     protected void interrupted() {
     	Launcher.shooter.set(0);
     	Feeder.feeder.set(0);
+    	RobotMap.feedMotor1.set(0);
     }
 
 	@Override

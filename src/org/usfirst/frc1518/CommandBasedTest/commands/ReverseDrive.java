@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 
 import org.usfirst.frc1518.CommandBasedTest.OI;
 import org.usfirst.frc1518.CommandBasedTest.Robot;
+import org.usfirst.frc1518.CommandBasedTest.RobotMap;
 import org.usfirst.frc1518.CommandBasedTest.subsystems.DriveTrain;
 
 /**
@@ -56,6 +57,14 @@ public class ReverseDrive extends InstantCommand {
     		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
     		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
     		Robot.isReversed = true;
+    		if(Robot.isTestBot == true){
+    			RobotMap.pwmIntake.set(0);
+    			Robot.intakeOn = false;
+    		}
+    		else{
+    			Robot.intakeOn = false;
+    			return;
+    		}
     	}
     	else {
     		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, false);
@@ -63,6 +72,8 @@ public class ReverseDrive extends InstantCommand {
     		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, false);
     		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
     		Robot.isReversed = false;
+    		RobotMap.pwmIntake.set(-0.8);
+    		Robot.intakeOn = true;
     	}
     }
 
