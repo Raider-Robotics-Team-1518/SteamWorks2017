@@ -29,9 +29,11 @@ public class Shoot extends Command {
 	}
 
 	protected void execute(){
-		Launcher.shooter.set(0.8);
+		/*Launcher.shooter.set(0.8);
 		Feeder.feeder.set(-1);
-		RobotMap.feedMotor1.set(1);
+		RobotMap.feedMotor1.set(1);*/
+		Launcher.shooter.set(-1);
+		Feeder.feeder.set(-0.8);
 		
 	}
 

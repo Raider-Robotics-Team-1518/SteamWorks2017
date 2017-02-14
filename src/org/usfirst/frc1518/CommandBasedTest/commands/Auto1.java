@@ -65,6 +65,8 @@ public class Auto1 extends InstantCommand {
 		if (currentPosition >= targetPulseCount) {
 			return true;
 		}
-		return false;
+		else{
+			return false;
+		}
 	}
 }
