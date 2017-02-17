@@ -1,35 +1,42 @@
 package org.usfirst.frc1518.CommandBasedTest.commands;
 
-import org.usfirst.frc1518.CommandBasedTest.OI;
+
 import org.usfirst.frc1518.CommandBasedTest.Robot;
 import org.usfirst.frc1518.CommandBasedTest.RobotMap;
-import org.usfirst.frc1518.CommandBasedTest.subsystems.Feeder;
 
-import edu.wpi.first.wpilibj.command.Command;
+
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-public class Feed extends Command{
+public class Feed extends InstantCommand{
 
 	public Feed() {
-		// TODO Auto-generated constructor stub
+		
 	}
+	
+	protected void initialize(){
+		Robot.intakeOn = false;
+	}
+	
 	protected void execute(){
-		Feeder.feeder.set(1);
+		if(Robot.intakeOn == true){
+			RobotMap.feedMotor.set(0);
+			Robot.intakeOn = false;
 		}
+		else if(Robot.intakeOn == false){
+			RobotMap.feedMotor.set(1);
+			Robot.intakeOn = true;
+		}
+	}
 		
 	
 
-	@Override
-	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 	
 	protected void end() {
-	Feeder.feeder.set(0);
+		RobotMap.feedMotor.set(0);
 	}
 	
 	protected void interrupted(){
-	Feeder.feeder.set(0);
+		RobotMap.feedMotor.set(0);
 	}
 }

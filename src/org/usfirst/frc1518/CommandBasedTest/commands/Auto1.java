@@ -13,21 +13,15 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 public class Auto1 extends InstantCommand {
-	double distanceToTravel = 24;
-	double circumferenceInInches = Math.PI * 10;
-	int pulsesPerRotation = 4096;
+	double distanceToTravel = 0;
+	double startPosition = 0;
 	RobotDrive drive = DriveTrain.drive;
-	CANTalon LF = RobotMap.driveTrainFrontLeftWheel;
-	CANTalon RF = RobotMap.driveTrainFrontRightWheel;
 	
 	public Auto1() {
-		LF.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		RF.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		RF.reverseSensor(true);
-		LF.setVoltageRampRate(12);
-		RF.setVoltageRampRate(12);
-		LF.setEncPosition(0);
-		RF.setEncPosition(0);
+		RobotMap.driveTrainFrontLeftWheel.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		RobotMap.driveTrainFrontRightWheel.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		RobotMap.driveTrainFrontRightWheel.reverseSensor(true);
+		RobotMap.driveTrainFrontLeftWheel.reverseSensor(true);
 
 	}
 	
@@ -40,7 +34,10 @@ public class Auto1 extends InstantCommand {
 		//LF.enableControl();
 		//RF.enableControl();
 		//LF.set(distanceToTravel / circumferenceInInches * pulsesPerRotation);
-		while (hasDrivenFarEnough(distanceToTravel) == false) {
+		System.out.println("Starting Auto 1");
+		startPosition = RobotMap.driveTrainFrontRightWheel.getEncPosition();
+		distanceToTravel = 48;
+		while (Robot.driveTrain.hasDrivenFarEnough(startPosition, distanceToTravel) == false) {
 			Robot.driveTrain.drive.arcadeDrive(-0.5, 0);
 		}
 		Robot.driveTrain.drive.arcadeDrive(0, 0);
@@ -49,24 +46,9 @@ public class Auto1 extends InstantCommand {
 	}
 	
 	protected void end(){
-		LF.disableControl();
-		RF.disableControl();
 	}
 
 	protected void interrupted(){
-		LF.disableControl();
-		RF.disableControl();
 	}
-	protected boolean hasDrivenFarEnough(double distance) {
-		int currentPosition = RF.getEncPosition();
-		double targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
-		System.out.println("Current Position: " + String.valueOf(currentPosition));
-		System.out.println("Target Position: " + String.valueOf(targetPulseCount));
-		if (currentPosition >= targetPulseCount) {
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
+	
 }

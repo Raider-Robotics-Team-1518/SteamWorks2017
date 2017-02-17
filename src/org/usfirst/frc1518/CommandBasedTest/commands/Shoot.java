@@ -29,18 +29,18 @@ public class Shoot extends Command {
 	}
 
 	protected void execute(){
-		/*Launcher.shooter.set(0.8);
-		Feeder.feeder.set(-1);
-		RobotMap.feedMotor1.set(1);*/
-		Launcher.shooter.set(-1);
-		Feeder.feeder.set(-0.8);
+		Launcher.shooter.set(0.8);
+		RobotMap.feedSpare1.set(1);
+		RobotMap.feedMotor1.set(1);
+		//Launcher.shooter.set(-1);
+		//Feeder.feeder.set(-0.8);
 		
 	}
 
     // Called once after isFinished returns true
     protected void end() {
     	Launcher.shooter.set(0);
-    	Feeder.feeder.set(0);
+    	RobotMap.feedSpare1.set(0);
     	RobotMap.feedMotor1.set(0);
     }
 
@@ -48,7 +48,7 @@ public class Shoot extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Launcher.shooter.set(0);
-    	Feeder.feeder.set(0);
+    	RobotMap.feedSpare1.set(0);
     	RobotMap.feedMotor1.set(0);
     }
 

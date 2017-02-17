@@ -13,17 +13,20 @@ public class RIntake extends Command{
 	
 	protected void execute() {
     	Feeder.feeder.set(-0.5);
+    	Launcher.shooter.set(-0.4);
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Feeder.feeder.set(0);    
+    	Feeder.feeder.set(0); 
+    	Launcher.shooter.set(0);
     	}
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	Feeder.feeder.set(0);
+    	Launcher.shooter.set(0);
     }
 
 	@Override
