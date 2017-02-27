@@ -2,7 +2,6 @@ package org.usfirst.frc1518.CommandBasedTest.commands;
 
 import org.usfirst.frc1518.CommandBasedTest.OI;
 import org.usfirst.frc1518.CommandBasedTest.RobotMap;
-import org.usfirst.frc1518.CommandBasedTest.subsystems.Feeder;
 import org.usfirst.frc1518.CommandBasedTest.subsystems.Launcher;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -29,9 +28,14 @@ public class Shoot extends Command {
 	}
 
 	protected void execute(){
-		Launcher.shooter.set(0.8);
-		RobotMap.feedSpare1.set(1);
-		RobotMap.feedMotor1.set(1);
+		Launcher.shooter.set(0.9);
+		RobotMap.feedSpare1.set(.7);
+		if(OI.unstick.get() == true){
+			RobotMap.feedMotor1.set(-.5);
+		}
+		else{
+			RobotMap.feedMotor1.set(.5);
+		}
 		//Launcher.shooter.set(-1);
 		//Feeder.feeder.set(-0.8);
 		

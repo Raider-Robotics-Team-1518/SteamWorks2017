@@ -1,30 +1,28 @@
 package org.usfirst.frc1518.CommandBasedTest.commands;
 
 
+import org.usfirst.frc1518.CommandBasedTest.OI;
 import org.usfirst.frc1518.CommandBasedTest.Robot;
 import org.usfirst.frc1518.CommandBasedTest.RobotMap;
 
-
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-public class Feed extends InstantCommand{
+public class Feed extends Command{
 
 	public Feed() {
 		
 	}
 	
 	protected void initialize(){
-		Robot.intakeOn = false;
 	}
 	
 	protected void execute(){
-		if(Robot.intakeOn == true){
-			RobotMap.feedMotor.set(0);
-			Robot.intakeOn = false;
+		if(OI.trigger.get() == true){
+			RobotMap.pwmIntake.set(0);
 		}
-		else if(Robot.intakeOn == false){
-			RobotMap.feedMotor.set(1);
-			Robot.intakeOn = true;
+		else{
+			RobotMap.pwmIntake.set(-1);
 		}
 	}
 		
@@ -33,10 +31,16 @@ public class Feed extends InstantCommand{
 
 	
 	protected void end() {
-		RobotMap.feedMotor.set(0);
+		RobotMap.pwmIntake.set(0);
 	}
 	
 	protected void interrupted(){
-		RobotMap.feedMotor.set(0);
+		RobotMap.pwmIntake.set(0);
+	}
+
+	@Override
+	protected boolean isFinished() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

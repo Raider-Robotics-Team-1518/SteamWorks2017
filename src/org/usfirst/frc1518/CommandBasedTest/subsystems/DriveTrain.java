@@ -29,14 +29,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveTrain extends Subsystem {
 
 
-	double circumferenceInInches = Math.PI * 8;
-	int pulsesPerRotation = 4096;
+	public static double circumferenceInInches = 25;  // 2017=20.5
+	public static int pulsesPerRotation = 4096;
 	public static RobotDrive drive;
-	double currentAngle = 0;
-	double currentPosition = 0;
-	double targetPulseCount = 0;
-	double drivePower = 0;
-	double startPosition = 0;
 	
 	public DriveTrain(){
 		super();
@@ -48,15 +43,16 @@ public class DriveTrain extends Subsystem {
 		}
 	}
 	
-	public void drive(GenericHID mainstick){
+	//public void drive(GenericHID mainstick){
 		/*double zAxis = Robot.oi.mainstick.getZ();
 		double yAxis = Robot.oi.mainstick.getY();
 		double xAxis = Robot.oi.mainstick.getX() * 0.5;
     	//yAxis = (yAxis * yAxis);
     	zAxis = (zAxis * Math.abs(zAxis)) + xAxis;
-
+		
 		drive.arcadeDrive(yAxis,zAxis);*/
-	}
+		
+	//}
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -71,7 +67,7 @@ public class DriveTrain extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
-    public void takeJoystickInputs(Double yAxis, Double zAxis) {
+    public void takeJoystickInputs(Double leftJoystick, Double mainstick) {
 		//double xAxis = (zAxis + Robot.oi.mainstick.getX()) * 0.75;
 		//yAxis = (yAxis * Math.abs(yAxis));
     	// multiplying the zAxis by itself causes a slower power curve on the steering
@@ -79,67 +75,12 @@ public class DriveTrain extends Subsystem {
     	//zAxis = (zAxis * Math.abs(zAxis) * 0.75);
     	//xAxis = (xAxis * Math.abs(xAxis) * 0.75);
     	
-    	drive.arcadeDrive(yAxis * 0.75, zAxis * 0.75);
+    	drive.tankDrive(leftJoystick, mainstick);
     	
     }
     public void stop() {
-    	drive.arcadeDrive(0,0);
+    	drive.tankDrive(0,0);
     }
     
-    public boolean hasDrivenFarEnough(double startPos, double distance) {
-		double currentPosition = RobotMap.driveTrainFrontRightWheel.getEncPosition();
-		double targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
-		double targetPosition = startPos + targetPulseCount;
-		//System.out.println("Current Position: " + String.valueOf(currentPosition));
-		//System.out.println("Target Position: " + String.valueOf(targetPulseCount));
-		if (currentPosition >= targetPosition) {
-			
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
-    public boolean drivenFarEnough(double distance) {
-		currentPosition = RobotMap.driveTrainFrontRightWheel.getEncPosition();
-		targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
-		//System.out.println("Current Position: " + String.valueOf(currentPosition));
-		//System.out.println("Target Position: " + String.valueOf(targetPulseCount));
-		if (currentPosition >= targetPulseCount) {
-			return true;
-		}
-		return false;
-	}
-	public boolean gyroTurn(double targetAngle) {
-		RobotMap.rioGyro.reset();
-			while ((readGyro() != targetAngle) && (calcP(targetAngle) > 0.2)) {
-				drive.arcadeDrive(0, calcP(targetAngle));
-			}
-		return true;
-	}
-	public boolean gyroDrive(double distance) {
-		// RobotMap.rioGyro.reset();
-		startPosition = RobotMap.driveTrainFrontRightWheel.getEncPosition();
-		while (hasDrivenFarEnough(startPosition, distance) == false) {
-			double drift = readGyro();
-			drive.arcadeDrive(0.5, -drift);
-			System.out.println("Gyro Heading: " + drift);
-		}
-		stop();
-		return true;
-	}
-	protected double readGyro() {
-		double angle = RobotMap.rioGyro.getAngle();
-		return angle;
-	}
-	protected double calcP(double tAngle) {
-		double p = 0.4; //8 * ((1-(readGyro() / Math.abs(tAngle))) - 0.05);
-		if (tAngle > 0) {
-			return p;
-		}
-		else {
-			return -p;
-		}
-	}
 }
 

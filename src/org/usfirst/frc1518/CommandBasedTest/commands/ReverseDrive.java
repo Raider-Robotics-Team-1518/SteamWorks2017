@@ -57,6 +57,8 @@ public class ReverseDrive extends InstantCommand {
     		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
     		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
     		Robot.isReversed = true;
+    		//RobotMap.pwmIntake.set(-0.8);
+    		//Robot.intakeOn = true;
     		}
     	
     	else {
@@ -65,8 +67,8 @@ public class ReverseDrive extends InstantCommand {
     		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, false);
     		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
     		Robot.isReversed = false;
-    		RobotMap.pwmIntake.set(-0.8);
-    		Robot.intakeOn = true;
+    		//RobotMap.pwmIntake.set(-0.8);
+    		//Robot.intakeOn = true;
     	}
     }
 

@@ -32,17 +32,17 @@ public class Drive extends Command {
 		// multiply the x axis by 0.5 to give more control
 		// multiply the z axis by itself to slow power curve
 		
-		double liveZ = Robot.oi.mainstick.getZ();
+		/*double liveZ = Robot.oi.mainstick.getZ();
 		double liveX = Robot.oi.mainstick.getX();
 		liveZ = (liveZ * Math.abs(liveZ)) * 0.8;
 		//liveX = liveX * .075;
-		double steering = liveZ + liveX;
+		double steering = liveZ + liveX;*/
 		if (Robot.isReversed == true) {
-		Robot.driveTrain.takeJoystickInputs(Robot.oi.mainstick.getY(), steering);
+		Robot.driveTrain.takeJoystickInputs(Robot.oi.leftJoystick.getY(), Robot.oi.mainstick.getY());
 		}
 		else {
 			// reversing zAxis when steering reversed
-			Robot.driveTrain.takeJoystickInputs(Robot.oi.mainstick.getY(), steering * -1);
+			Robot.driveTrain.takeJoystickInputs(Robot.oi.leftJoystick.getY() * -1, Robot.oi.mainstick.getY() * -1);
 		}
 	}
 	@Override
