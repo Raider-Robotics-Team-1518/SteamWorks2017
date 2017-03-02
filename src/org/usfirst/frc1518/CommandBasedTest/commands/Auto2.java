@@ -35,39 +35,44 @@ public class Auto2 extends Command {
 */
 		taskDone = false;
 		//Drive forward from right station.
-		gyroDrive(62);
+		gyroDrive(72);
+		Timer.delay(.5);
 		//Turn to face gear station.
-		gyroTurn(-60);
+		gyroTurn(-50);
+		Timer.delay(.5);
 		//Drive forward to meet gear station.
-		gyroDrive(36);				
+		gyroDrive(32);
+		Timer.delay(.5);
 		//Wait for pilot to grab gear.
 		Timer.delay(4);
 		//Back away from gear station.
-		gyroDrive(-36);
+		gyroDrive(-12);
+		Timer.delay(.5);
 		//Turn to face baseline.
-		gyroTurn(60);
+		gyroTurn(50);
+		Timer.delay(.5);
 		//Drive forward past baseline.
-		gyroDrive(36);
+		gyroDrive(72);
 		
+	
 		end();
 		
 	}
 	
 	protected void end(){
-		System.out.println("Auto Mode 2 Completed");
+		System.out.println("Auto Mode 1 Completed");
 		stop();
 	}
 
 	protected void interrupted() {
 		stop();
-		System.out.println("Auto Mode 2 Interrupted");
+		System.out.println("Auto Mode 1 Interrupted");
 	}
 
     public void stop() {
-		System.out.println("Auto Mode 2 Stopped");
+		System.out.println("Auto Mode 1 Stopped");
     	Robot.driveTrain.drive.arcadeDrive(0,0);
     	taskDone = true;
-    	currentPosition = targetPosition;
     	
     }
     
@@ -77,15 +82,26 @@ public class Auto2 extends Command {
 		targetPosition = startPos + targetPulseCount;
 		//System.out.println("Current Position: " + String.valueOf(currentPosition));
 		//System.out.println("Target Position: " + String.valueOf(targetPulseCount));
-		if (currentPosition >= targetPosition) {
-			
-			return true;
+
+		if (distance > 0) { // Driving FORWARD
+			if (currentPosition >= targetPosition) {
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
-		else{
-			return false;
+		else { // Driving REVERSE
+			if (currentPosition <= targetPosition) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 	}
 
+   
     public boolean drivenFarEnough(double distance) {
 		currentPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
 		targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
@@ -95,7 +111,7 @@ public class Auto2 extends Command {
 			return true;
 		}
 		return false;
-	}
+	}    
     public boolean gyroTurn(double targetAngle) {
 		RobotMap.rioGyro.reset();
 			while ((Math.abs(readGyro()) < Math.abs(targetAngle)) && (Math.abs(calcP(targetAngle)) > 0.22)) {
@@ -108,12 +124,18 @@ public class Auto2 extends Command {
 		startPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
 		while (hasDrivenFarEnough(startPosition, distance) == false) {
 			double drift = readGyro() / 10;
-			Robot.driveTrain.drive.arcadeDrive(-0.5, -drift);
+			if (distance > 0) {
+			Robot.driveTrain.drive.arcadeDrive(-0.5, -drift);  // FORWARD
+			}
+			else {
+				Robot.driveTrain.drive.arcadeDrive(0.5, -drift);  // REVERSE
+			}
 			System.out.println("Gyro Heading: " + drift);
 		}
 		stop();
 		return true;
 	}
+	
 	protected double readGyro() {
 		double angle = RobotMap.rioGyro.getAngle();
 		return angle;
@@ -131,7 +153,7 @@ public class Auto2 extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		System.out.println("Auto Mode 2 isFinished");
+		System.out.println("Auto Mode 1 isFinished");
 		return taskDone;
 	}
 

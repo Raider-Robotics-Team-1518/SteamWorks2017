@@ -47,7 +47,8 @@ public class Robot extends IterativeRobot {
     public static Launcher launcher;
 	public static double feedSpeed;
 	public static boolean isReversed = true;
-	public static boolean isTestBot = false;
+	public static boolean isTestBot = true;
+	public static boolean isTankMode = false;
 	public static boolean intakeOn;
 	public static String alliance = "";
 	public static UsbCamera cam0;
@@ -82,7 +83,7 @@ public class Robot extends IterativeRobot {
         autoModeSelect.addDefault("Do Nothing", new Auto4());
         autoModeSelect.addObject("Left Drop Off Gear and Drive Over Baseline", new Auto1());
         autoModeSelect.addObject("Right Drop Off Gear and Drive Over Baseline", new Auto2());
-        autoModeSelect.addObject("Three 60 Degree Turns", new Auto3());
+        autoModeSelect.addObject("Middle Station", new Auto3());
         SmartDashboard.putData("Autonomous Mode Selection", autoModeSelect);
     	RobotMap.driveTrainFrontLeftWheel.enableBrakeMode(true);
     	RobotMap.driveTrainFrontRightWheel.enableBrakeMode(true);
@@ -106,7 +107,7 @@ public class Robot extends IterativeRobot {
     	RobotMap.driveTrainRearLeftWheel.setInverted(true);
     	RobotMap.driveTrainRearRightWheel.setInverted(true);
     	isReversed = true;
-    	RobotMap.pwmIntake.set(0);
+    	//RobotMap.pwmIntake.set(0);
     	intakeOn = false;
     	driveTrain.stop();
 

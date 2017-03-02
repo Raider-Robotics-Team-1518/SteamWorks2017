@@ -28,21 +28,35 @@ public class Drive extends Command {
 	}
 
 	protected void execute(){
-		// combine z and x axis for steering preference
-		// multiply the x axis by 0.5 to give more control
-		// multiply the z axis by itself to slow power curve
-		
-		/*double liveZ = Robot.oi.mainstick.getZ();
-		double liveX = Robot.oi.mainstick.getX();
-		liveZ = (liveZ * Math.abs(liveZ)) * 0.8;
-		//liveX = liveX * .075;
-		double steering = liveZ + liveX;*/
-		if (Robot.isReversed == true) {
-		Robot.driveTrain.takeJoystickInputs(Robot.oi.leftJoystick.getY(), Robot.oi.mainstick.getY());
+
+		if (Robot.isTankMode == true) {
+			if (Robot.isReversed == true) {
+				Robot.driveTrain.takeJoystickInputs(Robot.oi.leftJoystick.getY(), Robot.oi.mainstick.getY());
+			}
+			else {
+				// reversing zAxis when steering reversed
+				Robot.driveTrain.takeJoystickInputs(Robot.oi.leftJoystick.getY() * -1, Robot.oi.mainstick.getY() * -1);
+			}
 		}
 		else {
-			// reversing zAxis when steering reversed
-			Robot.driveTrain.takeJoystickInputs(Robot.oi.leftJoystick.getY() * -1, Robot.oi.mainstick.getY() * -1);
+			// combine z and x axis for steering preference
+			// multiply the x axis by 0.5 to give more control
+			// multiply the z axis by itself to slow power curve
+			
+			double liveZ = Robot.oi.mainstick.getZ();
+			double liveX = Robot.oi.mainstick.getX();
+			liveZ = (liveZ * Math.abs(liveZ)) * 0.6;
+			liveX = liveX * .8;
+			double steering = liveZ + liveX;
+
+			if (Robot.isReversed == true) {
+				Robot.driveTrain.takeJoystickInputs(Robot.oi.mainstick.getY() * .8, steering);
+			}
+			else {
+				// reversing zAxis when steering reversed
+				Robot.driveTrain.takeJoystickInputs(Robot.oi.mainstick.getY() * -.8, steering * -1);
+			}
+
 		}
 	}
 	@Override

@@ -38,7 +38,9 @@ public class Auto3 extends Command {
 		//Drive forward from middle station.
 		gyroDrive(62);
 		//Stop and let pilot grab gear.
-		
+		Timer.delay(4);
+		//Back up.
+		gyroDrive(-36);
 		
 		
 		
@@ -56,77 +58,92 @@ public class Auto3 extends Command {
 		System.out.println("Auto Mode 3 Interrupted");
 	}
 
-    public void stop() {
-		System.out.println("Auto Mode 3 Stopped");
-    	Robot.driveTrain.drive.arcadeDrive(0,0);
-    	taskDone = true;
-    	currentPosition = targetPosition;
-    	
-    }
-    
-    public boolean hasDrivenFarEnough(double startPos, double distance) {
-		currentPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
-		targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
-		targetPosition = startPos + targetPulseCount;
-		//System.out.println("Current Position: " + String.valueOf(currentPosition));
-		//System.out.println("Target Position: " + String.valueOf(targetPulseCount));
-		if (currentPosition >= targetPosition) {
-			
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
+	 public void stop() {
+			System.out.println("Auto Mode 1 Stopped");
+	    	Robot.driveTrain.drive.arcadeDrive(0,0);
+	    	taskDone = true;
+	    	
+	    }
+	    
+	    public boolean hasDrivenFarEnough(double startPos, double distance) {
+			currentPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
+			targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
+			targetPosition = startPos + targetPulseCount;
+			//System.out.println("Current Position: " + String.valueOf(currentPosition));
+			//System.out.println("Target Position: " + String.valueOf(targetPulseCount));
 
-    public boolean drivenFarEnough(double distance) {
-		currentPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
-		targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
-		//System.out.println("Current Position: " + String.valueOf(currentPosition));
-		//System.out.println("Target Position: " + String.valueOf(targetPulseCount));
-		if (currentPosition >= targetPulseCount) {
-			return true;
-		}
-		return false;
-	}
-	public boolean gyroTurn(double targetAngle) {
-		RobotMap.rioGyro.reset();
-			while ((Math.abs(readGyro()) < Math.abs(targetAngle)) && (Math.abs(calcP(targetAngle)) > 0.22)) {
-				Robot.driveTrain.drive.arcadeDrive(0, calcP(targetAngle));
+			if (distance > 0) { // Driving FORWARD
+				if (currentPosition >= targetPosition) {
+					return true;
+				}
+				else{
+					return false;
+				}
 			}
-		return true;
-	}
-	public boolean gyroDrive(double distance) {
-		RobotMap.rioGyro.reset();
-		startPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
-		while (hasDrivenFarEnough(startPosition, distance) == false) {
-			double drift = readGyro() / 10;
-			Robot.driveTrain.drive.arcadeDrive(-0.5, -drift);
-			System.out.println("Gyro Heading: " + drift);
+			else { // Driving REVERSE
+				if (currentPosition <= targetPosition) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
 		}
-		stop();
-		return true;
-	}
-	protected double readGyro() {
-		double angle = RobotMap.rioGyro.getAngle();
-		SmartDashboard.putNumber("Gyro Reading", angle);
-		return angle;
-	}
-	protected double calcP(double tAngle) {
-		//double p = 0.95 * ((1-(Math.abs(readGyro()) / Math.abs(tAngle))) - 0.05);
-		double p = 0.6 * (Math.cbrt(1 - Math.abs(readGyro()/Math.abs(tAngle))));
-		if (tAngle > 0) {
-			return p;
-		}
-		else {
-			return (p * -1);
-		}
-	}
 
-	@Override
-	protected boolean isFinished() {
-		System.out.println("Auto Mode 3 isFinished");
-		return taskDone;
-	}
+	   
+	    public boolean drivenFarEnough(double distance) {
+			currentPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
+			targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
+			//System.out.println("Current Position: " + String.valueOf(currentPosition));
+			//System.out.println("Target Position: " + String.valueOf(targetPulseCount));
+			if (currentPosition >= targetPulseCount) {
+				return true;
+			}
+			return false;
+		}    
+	    public boolean gyroTurn(double targetAngle) {
+			RobotMap.rioGyro.reset();
+				while ((Math.abs(readGyro()) < Math.abs(targetAngle)) && (Math.abs(calcP(targetAngle)) > 0.22)) {
+					Robot.driveTrain.drive.arcadeDrive(0, calcP(targetAngle));
+				}
+			return true;
+		}
+		public boolean gyroDrive(double distance) {
+			RobotMap.rioGyro.reset();
+			startPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
+			while (hasDrivenFarEnough(startPosition, distance) == false) {
+				double drift = readGyro() / 10;
+				if (distance > 0) {
+				Robot.driveTrain.drive.arcadeDrive(-0.5, -drift);  // FORWARD
+				}
+				else {
+					Robot.driveTrain.drive.arcadeDrive(0.5, -drift);  // REVERSE
+				}
+				System.out.println("Gyro Heading: " + drift);
+			}
+			stop();
+			return true;
+		}
+		
+		protected double readGyro() {
+			double angle = RobotMap.rioGyro.getAngle();
+			return angle;
+		}
+		protected double calcP(double tAngle) {
+			double p = 0.95 * ((1-(Math.abs(readGyro()) / Math.abs(tAngle))) - 0.05);
+			
+			if (tAngle > 0) {
+				return p;
+			}
+			else {
+				return (p * -1);
+			}
+		}
 
-}
+		@Override
+		protected boolean isFinished() {
+			System.out.println("Auto Mode 1 isFinished");
+			return taskDone;
+		}
+
+	}

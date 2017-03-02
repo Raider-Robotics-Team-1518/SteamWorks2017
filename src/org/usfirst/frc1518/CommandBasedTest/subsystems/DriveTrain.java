@@ -67,7 +67,7 @@ public class DriveTrain extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
-    public void takeJoystickInputs(Double leftJoystick, Double mainstick) {
+    public void takeJoystickInputs(Double inputOne, Double inputTwo) {
 		//double xAxis = (zAxis + Robot.oi.mainstick.getX()) * 0.75;
 		//yAxis = (yAxis * Math.abs(yAxis));
     	// multiplying the zAxis by itself causes a slower power curve on the steering
@@ -75,7 +75,13 @@ public class DriveTrain extends Subsystem {
     	//zAxis = (zAxis * Math.abs(zAxis) * 0.75);
     	//xAxis = (xAxis * Math.abs(xAxis) * 0.75);
     	
-    	drive.tankDrive(leftJoystick, mainstick);
+    	if (Robot.isTankMode == true) { // Drive in TANK MODE
+        	drive.tankDrive(inputOne, inputTwo); // inputOne = LEFT SIDE; inputTwo = RIGHT SIDE
+    	}
+    	else { // Drive in ARCADE MODE
+        	drive.arcadeDrive(inputOne, inputTwo); // inputOne = Y ; inputTwo = X
+    		
+    	}
     	
     }
     public void stop() {
