@@ -45,8 +45,8 @@ public class Drive extends Command {
 			
 			double liveZ = Robot.oi.mainstick.getZ();
 			double liveX = Robot.oi.mainstick.getX();
-			liveZ = (liveZ * Math.abs(liveZ)) * 0.6;
-			liveX = liveX * .8;
+			liveZ = (liveZ * Math.abs(liveZ)) * 0.8;
+			liveX = liveX * .99;
 			double steering = liveZ + liveX;
 
 			if (Robot.isReversed == true) {

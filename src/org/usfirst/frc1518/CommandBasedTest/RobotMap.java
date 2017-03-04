@@ -53,7 +53,6 @@ public class RobotMap {
 	public static CANTalon driveTrainRearLeftWheel;
 	public static CANTalon driveTrainRearRightWheel; 
 	public static Encoder frontLeftEnc;
-	//public static CANTalon shooterMotor;
 	public static CANTalon shooterMotor;
 	public static Servo servo1;
 	public static Servo servo2;

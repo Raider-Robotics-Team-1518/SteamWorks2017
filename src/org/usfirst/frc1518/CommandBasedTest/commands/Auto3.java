@@ -5,6 +5,8 @@ import org.usfirst.frc1518.CommandBasedTest.RobotMap;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc1518.CommandBasedTest.commands.*;
+import org.usfirst.frc1518.CommandBasedTest.subsystems.Launcher;
 
 public class Auto3 extends Command {
 	double distanceToTravel = 0;
@@ -36,13 +38,20 @@ public class Auto3 extends Command {
 */
 		taskDone = false;
 		//Drive forward from middle station.
-		gyroDrive(62);
+		gyroDrive(58);
 		//Stop and let pilot grab gear.
 		Timer.delay(4);
 		//Back up.
-		gyroDrive(-36);
-		
-		
+		gyroDrive(-12);
+		Timer.delay(0.5);
+		//Turn 90 degrees.
+		gyroTurn(90);
+		//Drive past the airship.
+		gyroDrive(30);
+		//Turn to face the baseline.
+		gyroTurn(-90);
+		//Drive past the baseline.
+		gyroDrive(12);
 		
 		end();
 		
@@ -62,10 +71,12 @@ public class Auto3 extends Command {
 			System.out.println("Auto Mode 1 Stopped");
 	    	Robot.driveTrain.drive.arcadeDrive(0,0);
 	    	taskDone = true;
+	    	Launcher.shooter.set(0);
+			RobotMap.feedSpare1.set(0);
 	    	
 	    }
 	    
-	    public boolean hasDrivenFarEnough(double startPos, double distance) {
+	 public boolean hasDrivenFarEnough(double startPos, double distance) {
 			currentPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
 			targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
 			targetPosition = startPos + targetPulseCount;
@@ -138,6 +149,12 @@ public class Auto3 extends Command {
 			else {
 				return (p * -1);
 			}
+		}
+
+		
+		protected void shoot(){
+			Launcher.shooter.set(0.9);
+			RobotMap.feedSpare1.set(.7);
 		}
 
 		@Override

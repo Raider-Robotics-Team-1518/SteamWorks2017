@@ -42,7 +42,7 @@ public class Auto2 extends Command {
 		Timer.delay(.5);
 		//Drive forward to meet gear station.
 		gyroDrive(32);
-		Timer.delay(.5);
+		/*Timer.delay(.5);
 		//Wait for pilot to grab gear.
 		Timer.delay(4);
 		//Back away from gear station.
@@ -52,7 +52,7 @@ public class Auto2 extends Command {
 		gyroTurn(50);
 		Timer.delay(.5);
 		//Drive forward past baseline.
-		gyroDrive(72);
+		gyroDrive(72);*/
 		
 	
 		end();
