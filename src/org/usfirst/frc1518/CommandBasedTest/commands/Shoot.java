@@ -9,27 +9,25 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Shoot extends Command {
 
 	public Shoot() {
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	public Shoot(String name) {
 		super(name);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Shoot(double timeout) {
 		super(timeout);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Shoot(String name, double timeout) {
 		super(name, timeout);
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void execute(){
 		Launcher.shooter.set(0.9);
 		RobotMap.feedSpare1.set(.7);
+		RobotMap.shootAgitator.set(1);
 		if(OI.unstick.get() == true){
 			RobotMap.feedMotor1.set(-.5);
 		}
@@ -46,6 +44,7 @@ public class Shoot extends Command {
     	Launcher.shooter.set(0);
     	RobotMap.feedSpare1.set(0);
     	RobotMap.feedMotor1.set(0);
+    	RobotMap.shootAgitator.set(0);
     }
 
     // Called when another command which requires one or more of the same
@@ -54,11 +53,11 @@ public class Shoot extends Command {
     	Launcher.shooter.set(0);
     	RobotMap.feedSpare1.set(0);
     	RobotMap.feedMotor1.set(0);
+    	RobotMap.shootAgitator.set(0);
     }
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

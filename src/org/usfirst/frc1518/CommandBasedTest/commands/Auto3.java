@@ -68,7 +68,7 @@ public class Auto3 extends Command {
 	}
 
 	 public void stop() {
-			System.out.println("Auto Mode 1 Stopped");
+			System.out.println("Auto Mode 3 Stopped");
 	    	Robot.driveTrain.drive.arcadeDrive(0,0);
 	    	taskDone = true;
 	    	Launcher.shooter.set(0);
@@ -159,7 +159,7 @@ public class Auto3 extends Command {
 
 		@Override
 		protected boolean isFinished() {
-			System.out.println("Auto Mode 1 isFinished");
+			System.out.println("Auto Mode 3 isFinished");
 			return taskDone;
 		}
 

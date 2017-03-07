@@ -80,10 +80,12 @@ public class Robot extends IterativeRobot {
         RobotMap.rioGyro.calibrate();
         // instantiate the command used for the autonomous period
         autoModeSelect = new SendableChooser();
-        autoModeSelect.addDefault("Do Nothing", new Auto4());
-        autoModeSelect.addObject("Left Drop Off Gear and Drive Over Baseline", new Auto1());
-        autoModeSelect.addObject("Right Drop Off Gear and Drive Over Baseline", new Auto2());
+        autoModeSelect.addObject("Left Drop Off Gear", new Auto1());
+        autoModeSelect.addObject("Right Drop Off Gear", new Auto2());
         autoModeSelect.addObject("Middle Station", new Auto3());
+        autoModeSelect.addDefault("Do Nothing", new Auto4());
+        autoModeSelect.addObject("Drive Forward", new Auto5());
+        autoModeSelect.addObject("Middle and Shoot", new Auto6());
         SmartDashboard.putData("Autonomous Mode Selection", autoModeSelect);
     	RobotMap.driveTrainFrontLeftWheel.enableBrakeMode(true);
     	RobotMap.driveTrainFrontRightWheel.enableBrakeMode(true);

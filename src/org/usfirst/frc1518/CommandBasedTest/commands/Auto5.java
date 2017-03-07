@@ -3,76 +3,47 @@ package org.usfirst.frc1518.CommandBasedTest.commands;
 import org.usfirst.frc1518.CommandBasedTest.Robot;
 import org.usfirst.frc1518.CommandBasedTest.RobotMap;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
-public class Auto2 extends Command {
+public class Auto5 extends InstantCommand{
+	
 	double distanceToTravel = 0;
 	double startPosition = 0;
 	double circumferenceInInches = Robot.driveTrain.circumferenceInInches;
 	int pulsesPerRotation = Robot.driveTrain.pulsesPerRotation;
-
+	//public static RobotDrive drive;
 	double currentAngle = 0;
 	double currentPosition = 0;
 	double targetPulseCount = 0;
 	double targetPosition = 0;
 	double drivePower = 0;
 	boolean taskDone = false;
-	//public static RobotDrive drive;
-
-	
-	public Auto2() {
+	public Auto5() {
+		// TODO Auto-generated constructor stub
 		
-		//drive = new RobotDrive(RobotMap.driveTrainFrontLeftWheel, RobotMap.driveTrainFrontRightWheel);
 	}
-	
-	protected void execute() {
-
-		System.out.println("Starting Auto 2");
-/*		startPosition = RobotMap.driveTrainFrontRightWheel.getEncPosition();
-		distanceToTravel = 48;
-		while (Robot.driveTrain.hasDrivenFarEnough(startPosition, distanceToTravel) == false) {
-			Robot.driveTrain.drive.arcadeDrive(-0.5, 0);
-		}
-		Robot.driveTrain.drive.arcadeDrive(0, 0);
-*/
+	protected void execute(){
+		System.out.println("Starting Auto 5");
+		
 		taskDone = false;
-		//Drive forward from right station.
-		gyroDrive(72);
-		Timer.delay(.5);
-		//Turn to face gear station.
-		gyroTurn(-50);
-		Timer.delay(.5);
-		//Drive forward to meet gear station.
-		gyroDrive(32);
-		/*Timer.delay(.5);
-		//Wait for pilot to grab gear.
-		Timer.delay(4);
-		//Back away from gear station.
-		gyroDrive(-12);
-		Timer.delay(.5);
-		//Turn to face baseline.
-		gyroTurn(50);
-		Timer.delay(.5);
-		//Drive forward past baseline.
-		gyroDrive(72);*/
 		
-	
+		gyroDrive(240);
+		
 		end();
-		
+	}
+
+	protected void end(){
+		System.out.println("Auto Mode 5 Completed");
+		stop();
 	}
 	
-	protected void end(){
-		System.out.println("Auto Mode 2 Completed");
+	protected void interrupted(){
 		stop();
+		System.out.println("Auto Mode 5 Interrupted");
 	}
-
-	protected void interrupted() {
-		stop();
-		System.out.println("Auto Mode 2 Interrupted");
-	}
-
-    public void stop() {
-		System.out.println("Auto Mode 2 Stopped");
+	
+	public void stop() {
+		System.out.println("Auto Mode 5 Stopped");
     	Robot.driveTrain.drive.arcadeDrive(0,0);
     	taskDone = true;
     	
@@ -155,8 +126,8 @@ public class Auto2 extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		System.out.println("Auto Mode 2 isFinished");
+		System.out.println("Auto Mode 5 isFinished");
 		return taskDone;
 	}
-
+	
 }
