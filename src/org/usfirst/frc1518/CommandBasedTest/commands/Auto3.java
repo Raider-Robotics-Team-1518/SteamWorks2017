@@ -2,6 +2,8 @@ package org.usfirst.frc1518.CommandBasedTest.commands;
 
 import org.usfirst.frc1518.CommandBasedTest.Robot;
 import org.usfirst.frc1518.CommandBasedTest.RobotMap;
+
+import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,7 +25,7 @@ public class Auto3 extends Command {
 	
 	public Auto3() {
 		
-		//drive = new RobotDrive(RobotMap.driveTrainFrontLeftWheel, RobotMap.driveTrainFrontRightWheel);
+		//drive = new RobotDrive(RobotMap.driveTrainRearLeftWheel, RobotMap.driveTrainFrontRightWheel);
 	}
 	
 	protected void execute() {
@@ -38,20 +40,20 @@ public class Auto3 extends Command {
 */
 		taskDone = false;
 		//Drive forward from middle station.
-		gyroDrive(58);
+		gyroDrive(-76);
 		//Stop and let pilot grab gear.
 		Timer.delay(4);
 		//Back up.
-		gyroDrive(-12);
-		Timer.delay(0.5);
+		//gyroDrive(-12);
+		//Timer.delay(0.5);
 		//Turn 90 degrees.
-		gyroTurn(90);
+		//gyroTurn(90);
 		//Drive past the airship.
-		gyroDrive(30);
+		//gyroDrive(30);
 		//Turn to face the baseline.
-		gyroTurn(-90);
+		//gyroTurn(-90);
 		//Drive past the baseline.
-		gyroDrive(12);
+		//gyroDrive(12);
 		
 		end();
 		
@@ -77,12 +79,12 @@ public class Auto3 extends Command {
 	    }
 	    
 	 public boolean hasDrivenFarEnough(double startPos, double distance) {
-			currentPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
+			currentPosition = -1 * RobotMap.driveTrainRearLeftWheel.getEncPosition();
 			targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
 			targetPosition = startPos + targetPulseCount;
 			//System.out.println("Current Position: " + String.valueOf(currentPosition));
 			//System.out.println("Target Position: " + String.valueOf(targetPulseCount));
-
+			if (RobotState.isAutonomous() == true) {
 			if (distance > 0) { // Driving FORWARD
 				if (currentPosition >= targetPosition) {
 					return true;
@@ -99,11 +101,13 @@ public class Auto3 extends Command {
 					return false;
 				}
 			}
+			}
+			else { return true;}
 		}
 
 	   
 	    public boolean drivenFarEnough(double distance) {
-			currentPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
+			currentPosition = -1 * RobotMap.driveTrainRearLeftWheel.getEncPosition();
 			targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
 			//System.out.println("Current Position: " + String.valueOf(currentPosition));
 			//System.out.println("Target Position: " + String.valueOf(targetPulseCount));
@@ -114,14 +118,15 @@ public class Auto3 extends Command {
 		}    
 	    public boolean gyroTurn(double targetAngle) {
 			RobotMap.rioGyro.reset();
-				while ((Math.abs(readGyro()) < Math.abs(targetAngle)) && (Math.abs(calcP(targetAngle)) > 0.22)) {
+				while ((RobotState.isAutonomous() == true) && (Math.abs(readGyro()) < Math.abs(targetAngle)) && (Math.abs(calcP(targetAngle)) > 0.22)) {
 					Robot.driveTrain.drive.arcadeDrive(0, calcP(targetAngle));
 				}
-			return true;
+				stop();	
+				return true;
 		}
 		public boolean gyroDrive(double distance) {
 			RobotMap.rioGyro.reset();
-			startPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
+			startPosition = -1 * RobotMap.driveTrainRearLeftWheel.getEncPosition();
 			while (hasDrivenFarEnough(startPosition, distance) == false) {
 				double drift = readGyro() / 10;
 				if (distance > 0) {

@@ -52,20 +52,20 @@ public class ReverseDrive extends InstantCommand {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.isReversed == false) {
-    		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-    		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-    		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-    		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
+        	//RobotMap.driveTrainFrontLeftWheel.setInverted(true);
+        	//RobotMap.driveTrainFrontRightWheel.setInverted(true);
+        	//RobotMap.driveTrainRearLeftWheel.setInverted(true);
+        	//RobotMap.driveTrainRearRightWheel.setInverted(true);
     		Robot.isReversed = true;
     		//RobotMap.pwmIntake.set(-0.8);
     		//Robot.intakeOn = true;
     		}
     	
     	else {
-    		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, false);
-    		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, false);
-    		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, false);
-    		DriveTrain.drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, false);
+        	//RobotMap.driveTrainFrontLeftWheel.setInverted(false);
+        	//RobotMap.driveTrainFrontRightWheel.setInverted(false);
+        	//RobotMap.driveTrainRearLeftWheel.setInverted(false);
+        	//RobotMap.driveTrainRearRightWheel.setInverted(false);
     		Robot.isReversed = false;
     		//RobotMap.pwmIntake.set(-0.8);
     		//Robot.intakeOn = true;

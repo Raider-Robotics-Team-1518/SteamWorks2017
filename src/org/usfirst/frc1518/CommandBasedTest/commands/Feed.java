@@ -19,10 +19,10 @@ public class Feed extends Command{
 	
 	protected void execute(){
 		if(OI.trigger.get() == true){
-			RobotMap.pwmIntake.set(0);
+			RobotMap.intakeMotor.set(0);
 		}
 		else{
-			RobotMap.pwmIntake.set(-1);
+			RobotMap.intakeMotor.set(-1);
 		}
 	}
 		
@@ -31,11 +31,11 @@ public class Feed extends Command{
 
 	
 	protected void end() {
-		RobotMap.pwmIntake.set(0);
+		RobotMap.intakeMotor.set(0);
 	}
 	
 	protected void interrupted(){
-		RobotMap.pwmIntake.set(0);
+		RobotMap.intakeMotor.set(0);
 	}
 
 	@Override

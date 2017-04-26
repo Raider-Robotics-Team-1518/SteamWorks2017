@@ -25,14 +25,15 @@ public class Shoot extends Command {
 	}
 
 	protected void execute(){
-		Launcher.shooter.set(0.9);
+		Launcher.shooter.set(1);
 		RobotMap.feedSpare1.set(.7);
-		RobotMap.shootAgitator.set(1);
 		if(OI.unstick.get() == true){
 			RobotMap.feedMotor1.set(-.5);
+			RobotMap.shootAgitator.set(-1);
 		}
 		else{
 			RobotMap.feedMotor1.set(.5);
+			RobotMap.shootAgitator.set(1);
 		}
 		//Launcher.shooter.set(-1);
 		//Feeder.feeder.set(-0.8);

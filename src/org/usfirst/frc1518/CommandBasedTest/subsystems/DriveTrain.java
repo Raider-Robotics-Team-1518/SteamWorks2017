@@ -29,7 +29,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveTrain extends Subsystem {
 
 
-	public static double circumferenceInInches = 25;  // 2017=20.5
+	public static double circumferenceInInches = 20.1;  // 2017=20.5
 	public static int pulsesPerRotation = 4096;
 	public static RobotDrive drive;
 	

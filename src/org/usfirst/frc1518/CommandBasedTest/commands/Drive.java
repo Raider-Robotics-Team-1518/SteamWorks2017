@@ -1,5 +1,6 @@
 package org.usfirst.frc1518.CommandBasedTest.commands;
 
+import org.usfirst.frc1518.CommandBasedTest.OI;
 import org.usfirst.frc1518.CommandBasedTest.Robot;
 import org.usfirst.frc1518.CommandBasedTest.RobotMap;
 
@@ -45,16 +46,28 @@ public class Drive extends Command {
 			
 			double liveZ = Robot.oi.mainstick.getZ();
 			double liveX = Robot.oi.mainstick.getX();
-			liveZ = (liveZ * Math.abs(liveZ)) * 0.8;
-			liveX = liveX * .99;
-			double steering = liveZ + liveX;
+			double liveY = Robot.oi.mainstick.getY();
+			liveZ = (liveZ * Math.abs(liveZ)) * 0.6;	// 60% for best control 
+			liveX = liveX * .8;							// 80% for better control
+			liveY = liveY * Math.abs(liveY);  			// Squared using absolute to maintain negative values
+			double steering = liveZ + liveX;			// Combine X & Z so both can control steering
 
 			if (Robot.isReversed == true) {
-				Robot.driveTrain.takeJoystickInputs(Robot.oi.mainstick.getY() * .8, steering);
+				if (OI.turbo.get() == true) {
+					Robot.driveTrain.takeJoystickInputs(liveY * -1, steering);
+				}
+				else {
+				Robot.driveTrain.takeJoystickInputs(liveY * -.80, steering);
+				}
 			}
 			else {
-				// reversing zAxis when steering reversed
-				Robot.driveTrain.takeJoystickInputs(Robot.oi.mainstick.getY() * -.8, steering * -1);
+				// reversing drive and steering when in reversed drive
+				if (OI.turbo.get() == true) {
+					Robot.driveTrain.takeJoystickInputs(liveY * 1, steering);
+				}
+				else {
+				Robot.driveTrain.takeJoystickInputs(liveY * .80, steering);
+				}
 			}
 
 		}
