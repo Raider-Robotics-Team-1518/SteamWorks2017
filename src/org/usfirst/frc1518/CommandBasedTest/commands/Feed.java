@@ -1,39 +1,46 @@
 package org.usfirst.frc1518.CommandBasedTest.commands;
 
+
+import org.usfirst.frc1518.CommandBasedTest.OI;
 import org.usfirst.frc1518.CommandBasedTest.Robot;
 import org.usfirst.frc1518.CommandBasedTest.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
-public class Lift extends Command{
+public class Feed extends Command{
 
-	public Lift() {
+	public Feed() {
 		
 	}
-
-	protected void execute(){
-		if(Robot.isTestBot == false){
-		RobotMap.lift.set(1);
-		}
-		else {
-			RobotMap.pwmLift.set(-1);
-		}
+	
+	protected void initialize(){
 	}
 	
-	protected void end(){
-		RobotMap.lift.set(0);
-		RobotMap.pwmLift.set(0);
+	protected void execute(){
+		if(OI.trigger.get() == true){
+			RobotMap.intakeMotor.set(0);
+		}
+		else{
+			RobotMap.intakeMotor.set(-1);
+		}
+	}
+		
+	
+
+
+	
+	protected void end() {
+		RobotMap.intakeMotor.set(0);
 	}
 	
 	protected void interrupted(){
-		RobotMap.lift.set(0);
-		RobotMap.pwmLift.set(0);
+		RobotMap.intakeMotor.set(0);
 	}
-	
+
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

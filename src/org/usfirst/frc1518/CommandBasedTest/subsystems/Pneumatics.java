@@ -2,18 +2,15 @@ package org.usfirst.frc1518.CommandBasedTest.subsystems;
 
 import org.usfirst.frc1518.CommandBasedTest.RobotMap;
 
-import com.ctre.CANTalon;
-
-import edu.wpi.first.wpilibj.CANSpeedController;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Launcher extends Subsystem {
-
-    public static final CANTalon shooter = RobotMap.shooterMotor;
-
-    public Launcher() {
+public class Pneumatics extends Subsystem{
+	public static final Solenoid one = RobotMap.testSolenoid;
+	public static final Solenoid two = RobotMap.testSolenoid1;
+	
+	public Pneumatics() {
 		// TODO Auto-generated constructor stub
-
 	}
 
 	@Override
