@@ -83,7 +83,7 @@ public class AutoMode0 extends Command {
 
 	}
     public boolean hasDrivenFarEnough(double startPos, double distance) {
-		double currentPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
+//		double currentPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
 		double targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
 		double targetPosition = startPos + targetPulseCount;
 		//System.out.println("Current Position: " + String.valueOf(currentPosition));
@@ -98,7 +98,7 @@ public class AutoMode0 extends Command {
 	}
 
     public boolean drivenFarEnough(double distance) {
-		currentPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
+//		currentPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
 		targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
 		//System.out.println("Current Position: " + String.valueOf(currentPosition));
 		//System.out.println("Target Position: " + String.valueOf(targetPulseCount));
@@ -110,16 +110,16 @@ public class AutoMode0 extends Command {
 	public boolean gyroTurn(double targetAngle) {
 		RobotMap.rioGyro.reset();
 			while ((readGyro() < Math.abs(targetAngle)) && (calcP(targetAngle) > 0.2)) {
-				Robot.driveTrain.drive.arcadeDrive(0, calcP(targetAngle));
+//				Robot.driveTrain.drive.arcadeDrive(0, calcP(targetAngle));
 			}
 		return true;
 	}
 	public boolean gyroDrive(double distance) {
 		RobotMap.rioGyro.reset();
-		startPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
+//		startPosition = -1 * RobotMap.driveTrainFrontLeftWheel.getEncPosition();
 		while (hasDrivenFarEnough(startPosition, distance) == false) {
 			double drift = readGyro() / 10;
-			Robot.driveTrain.drive.arcadeDrive(-0.5, -drift);
+//			Robot.driveTrain.drive.arcadeDrive(-0.5, -drift);
 			System.out.println("Gyro Heading: " + drift);
 		}
 		stop();
@@ -140,7 +140,7 @@ public class AutoMode0 extends Command {
 	}
     public void stop() {
 		System.out.println("Auto Mode 1 Stopped");
-    	Robot.driveTrain.drive.arcadeDrive(0,0);
+//    	Robot.driveTrain.drive.arcadeDrive(0,0);
     	taskDone = true;
     }
 

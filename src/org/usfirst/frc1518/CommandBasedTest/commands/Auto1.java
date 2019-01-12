@@ -80,13 +80,13 @@ public class Auto1 extends Command {
 
     public void stop() {
 		System.out.println("Auto Mode 1 Stopped");
-    	Robot.driveTrain.drive.arcadeDrive(0,0);
+//    	Robot.driveTrain.drive.arcadeDrive(0,0);
     	taskDone = true;
     	
     }
     
     public boolean hasDrivenFarEnough(double startPos, double distance) {
-		currentPosition = -1 * RobotMap.driveTrainRearLeftWheel.getEncPosition();
+//		currentPosition = -1 * RobotMap.driveTrainRearLeftWheel.getEncPosition();
 		targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
 		targetPosition = startPos + targetPulseCount;
 		//System.out.println("Current Position: " + String.valueOf(currentPosition));
@@ -114,7 +114,7 @@ public class Auto1 extends Command {
 
    
     public boolean drivenFarEnough(double distance) {
-		currentPosition = -1 * RobotMap.driveTrainRearLeftWheel.getEncPosition();
+//		currentPosition = -1 * RobotMap.driveTrainRearLeftWheel.getEncPosition();
 		targetPulseCount = distance / circumferenceInInches * pulsesPerRotation;
 		//System.out.println("Current Position: " + String.valueOf(currentPosition));
 		//System.out.println("Target Position: " + String.valueOf(targetPulseCount));
@@ -126,21 +126,21 @@ public class Auto1 extends Command {
     public boolean gyroTurn(double targetAngle) {
 		RobotMap.rioGyro.reset();
 			while ((RobotState.isAutonomous() == true) && (Math.abs(readGyro()) < Math.abs(targetAngle)) && (Math.abs(calcP(targetAngle)) > 0.22)) {
-				Robot.driveTrain.drive.arcadeDrive(0, calcP(targetAngle));
+//				Robot.driveTrain.drive.arcadeDrive(0, calcP(targetAngle));
 			}
 			stop();	
 			return true;
 	}
 	public boolean gyroDrive(double distance) {
 		RobotMap.rioGyro.reset();
-		startPosition = -1 * RobotMap.driveTrainRearLeftWheel.getEncPosition();
+//		startPosition = -1 * RobotMap.driveTrainRearLeftWheel.getEncPosition();
 		while (hasDrivenFarEnough(startPosition, distance) == false) {
 			double drift = readGyro() / 10;
 			if (distance > 0) {
-			Robot.driveTrain.drive.arcadeDrive(-0.6, -drift);  // FORWARD
+//			Robot.driveTrain.drive.arcadeDrive(-0.6, -drift);  // FORWARD
 			}
 			else {
-				Robot.driveTrain.drive.arcadeDrive(0.6, -drift);  // REVERSE
+//				Robot.driveTrain.drive.arcadeDrive(0.6, -drift);  // REVERSE
 			}
 			System.out.println("Gyro Heading: " + drift);
 		}

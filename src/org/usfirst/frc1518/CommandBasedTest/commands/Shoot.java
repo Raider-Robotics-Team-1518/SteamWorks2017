@@ -25,7 +25,7 @@ public class Shoot extends Command {
 	}
 
 	protected void execute(){
-		Launcher.shooter.set(1);
+		RobotMap.shooterMotor.set(1);
 		RobotMap.feedSpare1.set(.7);
 		if(OI.unstick.get() == true){
 			RobotMap.feedMotor1.set(-.5);
@@ -42,7 +42,7 @@ public class Shoot extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Launcher.shooter.set(0);
+    	RobotMap.shooterMotor.set(0);
     	RobotMap.feedSpare1.set(0);
     	RobotMap.feedMotor1.set(0);
     	RobotMap.shootAgitator.set(0);

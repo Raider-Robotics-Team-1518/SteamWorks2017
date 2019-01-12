@@ -13,11 +13,11 @@ public class ExtendSolenoid extends InstantCommand{
 	
 	protected void execute(){
 		if(isExtended == true){
-			Pneumatics.one.set(false);
+//			Pneumatics.one.set(false);
 			isExtended = false;
 		}
 		else {
-			Pneumatics.one.set(true);
+//			Pneumatics.one.set(true);
 			isExtended = true;
 		}
 		}
